@@ -6,7 +6,7 @@ import com.service.RequestGenerator;
 
 public class ThreadRequestGenerator implements Runnable  {
 
-    MyQueue queue;
+    private MyQueue queue;
 
     public ThreadRequestGenerator(MyQueue queue) {
         this.queue = queue;

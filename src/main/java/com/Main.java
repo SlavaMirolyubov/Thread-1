@@ -9,8 +9,10 @@ import java.util.stream.IntStream;
 
 public class Main {
 
-    private static int NUMBER_OF_THREADS = 3;
-    private static int NUMBER_OF_REQUEST = 15;
+    private final static int NUMBER_OF_THREADS = 3;
+    public final static int NUMBER_OF_REQUEST = 15;
+    private final static int NUMBER_OF_BOOKERS = 6;
+    public final static int SIZE_OF_QUEUE = 5;
 
     public static void main(String[] args) {
 
@@ -21,7 +23,7 @@ public class Main {
                 .forEach(x -> service.submit(new ThreadRequestGenerator(queue)));
 
 
-        ExecutorService service2 = Executors.newFixedThreadPool(6);
+        ExecutorService service2 = Executors.newFixedThreadPool(NUMBER_OF_BOOKERS);
         IntStream.range(0, NUMBER_OF_REQUEST)
                 .forEach(x -> service2.submit(new Booker(queue)));
 
@@ -35,11 +37,6 @@ public class Main {
             e.printStackTrace();
         }
 
-
-
-
     }
-
-
 
 }
